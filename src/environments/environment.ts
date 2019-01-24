@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDNbIedyXjRaBxm8VL4uq_-BSjfyJUQY_0",
-    authDomain: "furniture-shoping-700a5.firebaseapp.com",
-    databaseURL: "https://furniture-shoping-700a5.firebaseio.com",
-    projectId: "furniture-shoping-700a5",
-    storageBucket: "furniture-shoping-700a5.appspot.com",
-    messagingSenderId: "28343970409"
+    apiKey: "AIzaSyBvYA5Kw_ISaWFo0pz6nUPj2zfZjdv1udk",
+    authDomain: "furniture-shopping-0311.firebaseapp.com",
+    databaseURL: "https://furniture-shopping-0311.firebaseio.com",
+    projectId: "furniture-shopping-0311",
+    storageBucket: "furniture-shopping-0311.appspot.com",
+    messagingSenderId: "817133444128"
   }
 };
 
