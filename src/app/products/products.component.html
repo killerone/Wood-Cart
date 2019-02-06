@@ -1,3 +1,26 @@
-<p>
-  products works!
-</p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-3">
+            <product-filter [category]="category"></product-filter>
+        </div>
+        <div class="col">
+            <div class="row mx-auto">
+                <ng-container *ngFor="let p of filteredProducts; let i = index">
+                    <div class="col">
+                        <div class="card" style="width: 15rem;">
+                            <img class="card-img-top img-thumbnail" [src]="p.imgUrl">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>{{ p.title }}</b></h5>
+                                <p class="card-text"><b>{{ p.price | currency:'INR'}}</b></p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="btn btn-primary btn-block">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="(i + 1) % 2 ===0" class="w-100"></div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="row my-5">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" class="form-control" type="text"
+          required>
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Title is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">₹</span>
+          <input #price="ngModel" [min]='0' [(ngModel)]="product.price" name="price" id="price" class="form-control"
+            type="number" required>
+        </div>
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price.error.required">Price is required.</div>
+          <div *ngIf="price.error.min">Price should be greater than 0.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select #category="ngModel" name="category" [(ngModel)]="product.category" id="category" class="form-control"
+          required>
+          <option value=""></option>
+          <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+          Category is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imgUrl">Image</label>
+        <input #imgUrl="ngModel" [(ngModel)]="product.imgUrl" name="imgUrl" id="imageUrl" class="form-control" type="text"
+          required>
+        <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
+          Image Url is required.
+        </div>
+      </div>
+
+      <button class="btn btn-success">Add</button>
+      <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger ml-3">Delete</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="product.title" class="card mx-3">
+      <img class="card-img-top" [src]="product.imgUrl">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.price | currency:'INR':true }}</p>
+      </div>
+    </div>
+  </div>
+</div>

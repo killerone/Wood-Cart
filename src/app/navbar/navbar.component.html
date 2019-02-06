@@ -1,30 +1,54 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/">Furniture Shopping</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar sticky-top navbar-expand-lg navbar-fixed">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Furniture Shopping</a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">Cart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- search box -->
+    <ul class="nav navbar-nav mx-auto">
+      <div class="search-box">
+        <input class="search-txt" type="text" name="" placeholder="Type To Search .....">
+        <a class="search-btn">
+          <i class="fas fa-search"></i>
+        </a>
+      </div>
+    </ul>
+
+    <ng-template #anonymousUser>
+      <li>
+        <a class="nav-link" routerLink="/login"><i class="far fa-user mr-1"></i>Login</a>
       </li>
-      <li ngbDropdown class="nav-item dropdown">
+    </ng-template>
+
+    <ul class="navbar-nav">
+      <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item  dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Username
+          <i class="far fa-user"></i>
+          <span>
+            {{ appUser.name }}
+          </span>
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
-          <a class="dropdown-item" routerLink="/admin/orders">Manage Order</a>
-          <a class="dropdown-item" routerLink="/admin/products">Manage Product</a>
+          <ng-container *ngIf="appUser.isAdmin">
+            <a class="dropdown-item" routerLink="/admin/orders">Manage Order</a>
+            <a class="dropdown-item" routerLink="/admin/products">Manage Product</a>
+          </ng-container>
+          <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/shopping-cart"><i class="fas fa-shopping-cart"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link ml-1"><i class="far fa-heart"></i></a>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
   </div>
 </nav>

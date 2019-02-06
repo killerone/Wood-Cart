@@ -1,3 +1,41 @@
 .dropdown-toggle{
     cursor: pointer;
 }
+
+.navbar-fixed{
+    background-color: #1E1A11;
+}
+
+.fa-search, .far, .navbar-brand, .fas, .fa,span,.dropdown-toggle{
+    color:white;
+}
+.search-btn{
+    color: white;
+    /*float: right;*/
+    width: 240px;
+    padding: 0 6px;
+    height: 40px;
+    border-radius:50%;
+    background: #1E1A11;
+  /*  display: flex;*/
+    /*justify-content: center;*/
+    align-items: center;
+    font-size: 22px;
+}
+.search-txt{
+    border: none;
+    background: white;
+    outline: none;
+   /* float:left;*/
+    color: black;
+    font-size: 16px;
+    /*transition: 0.4s;*/
+    line-height: 37px;
+    width: 240px;
+    padding: 0 15px;
+    border-radius: 20px;
+}
+
+
+
+

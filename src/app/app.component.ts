@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthService } from './service/auth.service';
 import { Component } from '@angular/core';
+import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'furniture-shopping';
+  constructor(auth: AuthService, router: Router, private userservice: UserService) {
+    auth.user$.subscribe(user => {
+      if (user) {
+        userservice.save(user);
+
+        let retunUrl = localStorage.getItem('returnUrl');
+
+        if (retunUrl) {
+          localStorage.removeItem("returnUrl");
+          router.navigateByUrl(retunUrl);
+        }
+      }
+    })
+  }
 }

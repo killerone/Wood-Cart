@@ -1,4 +1,7 @@
+import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from './../../service/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'admin-product',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductComponent implements OnInit {
 
-  constructor() { }
+  products: Product[];
+  filteredProducts: Product[];
+  subscription: Subscription;
 
-  ngOnInit() {
+
+  constructor(private productService: ProductService) {
+    this.subscription = this.productService.getAll().subscribe(
+      products => {
+        this.filteredProducts = this.products = products.map(item => {
+          return {
+            id: item.payload.doc.id,
+            ...item.payload.doc.data()
+          } as Product;
+        })
+      });
   }
 
+  ngOnInit() {
+    this.productService.getAll().subscribe(productArray => {
+      this.products = productArray.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        } as Product;
+      })
+    })
+  }
+
+  filter(query: string) {
+    this.filteredProducts = (query) ?
+      this.products.filter(p => p['title'].toLowerCase().includes(query.toLowerCase())) :
+      this.products;
+  }
+
+  ngOnDestroy() { 
+    this.subscription.unsubscribe(); 
+  } 
 }

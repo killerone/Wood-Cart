@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
+
+#toast-container > div {
+    opacity:1;
+}
+
+.d{
+    top:57px;
+}

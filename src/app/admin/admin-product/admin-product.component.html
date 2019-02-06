@@ -1,3 +1,44 @@
-<p>
-  admin-product works!
-</p>
+<div class="container mx-3 d">
+    <p class="mt-4">
+        <a routerLink="/admin/products/new" class="btn btn-primary">Add Product</a>
+    </p>
+
+    <p>
+        <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search....">
+    </p>
+
+
+    <table class="table table-hover " [mfData]="filteredProducts" #mf="mfDataTable" [mfRowsOnPage]="5">
+        <thead class="table-info">
+            <tr>
+                <td style="width: 30%">
+                    <mfDefaultSorter by="title"><b>Title</b></mfDefaultSorter>
+                </td>
+                <td style="width: 30%">
+                    <mfDefaultSorter by="price"><b>Price</b></mfDefaultSorter>
+                </td>
+                <td style="width: 30%">
+                    <mfDefaultSorter by="category"><b>Category</b></mfDefaultSorter>
+                </td>
+                <td style="width: 10%"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of mf.data">
+                <td>{{ product.title }}</td>
+                <td>{{ product.price | currency:"INR" }}</td>
+                <td>{{ product.category }}</td>
+                <td>
+                    <a [routerLink]="['/admin/products/', product.id]">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
