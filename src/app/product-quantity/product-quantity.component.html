@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-3">
+    <button class="btn btn-danger d-inline" (click)="removeFromCart()">-</button>
+  </div>
+  <div class="col">
+    <b class="my-auto text-right float-right d-inline">{{ shoppingCart.getQuantity(product) }}</b>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-success d-inline" (click)="addToCart()">+</button>
+  </div>
+</div>

@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   get(productId) {
-    return this.firestore.collection("products").doc(productId).ref.get();
+    return this.firestore.collection("products").doc(productId).valueChanges();
   }
 
   update(productId, product) {

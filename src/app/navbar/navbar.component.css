@@ -9,6 +9,9 @@
 .fa-search, .far, .navbar-brand, .fas, .fa,span,.dropdown-toggle{
     color:white;
 }
+.far, .fas{
+    font-size: 1.3rem;
+}
 .search-btn{
     color: white;
     /*float: right;*/
@@ -35,7 +38,3 @@
     padding: 0 15px;
     border-radius: 20px;
 }
-
-
-
-

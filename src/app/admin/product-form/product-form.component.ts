@@ -1,8 +1,10 @@
+import { Product } from './../../models/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './../../service/product.service';
 import { CategoriesService } from './../../service/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'product-form',
@@ -12,7 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductFormComponent implements OnInit {
 
   categories: { id: string, name: string }[];
-  product = {};
+  //product : {title:string, price:string,category:string,imgUrl:string};
+  product: Product;
   id;
 
   constructor(
@@ -24,7 +27,7 @@ export class ProductFormComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id)
-      this.productService.get(this.id).then(p => this.product = p.data());
+      this.productService.get(this.id).pipe(take(1)).subscribe((p: Product) => this.product = new Product(p));
   }
 
   ngOnInit() {

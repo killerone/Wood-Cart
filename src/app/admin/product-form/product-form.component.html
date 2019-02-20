@@ -38,24 +38,18 @@
 
       <div class="form-group">
         <label for="imgUrl">Image</label>
-        <input #imgUrl="ngModel" [(ngModel)]="product.imgUrl" name="imgUrl" id="imageUrl" class="form-control" type="text"
-          required>
+        <input #imgUrl="ngModel" [(ngModel)]="product.imgUrl" name="imgUrl" id="imageUrl" class="form-control"
+          type="text" required>
         <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
           Image Url is required.
         </div>
       </div>
 
-      <button class="btn btn-success">Add</button>
+      <button class="btn btn-success" [disabled]="!f.valid">Add</button>
       <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger ml-3">Delete</button>
     </form>
   </div>
   <div class="col-md-6">
-    <div *ngIf="product.title" class="card mx-3">
-      <img class="card-img-top" [src]="product.imgUrl">
-      <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.price | currency:'INR':true }}</p>
-      </div>
-    </div>
+    <product-card [product]="product" [show-actions]="false"></product-card>
   </div>
 </div>

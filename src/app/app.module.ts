@@ -1,3 +1,4 @@
+import { CartService } from './service/cart.service';
 import { CategoriesService } from './service/categories.service';
 import { AdminAuthGuardService as AdminAuthGuard } from './service/admin-auth-guard.service';
 import { UserService } from './service/user.service';
@@ -32,6 +33,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CustomFormsModule } from 'ng2-validation';
 import { DataTableModule } from "angular-6-datatable";
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     AdminOrdersComponent,
     LoginComponent,
     ProductFormComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +96,13 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
       }
     ]),
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2300,
+      preventDuplicates: true,
+      closeButton: true,
+      maxOpened: 2,
+      positionClass: 'toast-bottom-right'
+    }),
 
   ],
   providers:
@@ -100,6 +111,7 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
       UserService,
       CategoriesService,
       ProductService,
+      CartService,
       AuthGuard,
       AdminAuthGuard
     ],
