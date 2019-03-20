@@ -17,7 +17,6 @@ export class ProductsComponent implements OnInit {
   productSubscription: Subscription;
   categorytSubscription: Subscription;
   cart$: any;
-  cartSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,19 +38,14 @@ export class ProductsComponent implements OnInit {
 
       this.categorytSubscription = this.route.queryParamMap.subscribe(params => {
         this.category = params.get("category");
-        this.filteredProducts = (this.category) ?
-          this.products.filter(p => p.category === this.category) :
-          this.products;
+        this.applyFilter();
       })
     });
-
-
   }
 
-  ngOnDestroy() {
-    // this.productSubscription.unsubscribe()
-    // this.categorytSubscription.unsubscribe()
-    // this.cartSubscription.unsubscribe()
+  private applyFilter() {
+    this.filteredProducts = (this.category) ?
+      this.products.filter(p => p.category === this.category) :
+      this.products;
   }
-
 }

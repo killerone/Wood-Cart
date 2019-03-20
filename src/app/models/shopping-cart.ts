@@ -11,7 +11,7 @@ export class ShoppingCart {
       this.items.push(new ShoppingCartItem(item.payload.doc.data().product, item.payload.doc.data().quantity,
         item.payload.doc.data().product.id));
     }
-  }
+  } 
 
   getQuantity(product: Product) {
     let quant = 0;

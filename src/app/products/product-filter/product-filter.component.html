@@ -3,8 +3,8 @@
     <a class="list-group-item list-group-item-action" [class.active]="!category" routerLink="/">
       All categories
     </a>
-    <a *ngFor="let c of categories" class="list-group-item list-group-item-action" routerLink="/" [queryParams]="{ category: c.id}"
-      [class.active]="category === c.id">
+    <a *ngFor="let c of categories" class="list-group-item list-group-item-action" routerLink="/"
+      [queryParams]="{ category: c.id}" [class.active]="category === c.id">
       {{ c.name }}
     </a>
   </div>

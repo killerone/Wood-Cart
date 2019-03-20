@@ -3,12 +3,15 @@
   <div class="row">
     <div class="col">
       <h4>You have {{ cart.totalItemsCount }} items in cart.</h4>
+      <button *ngIf="cart.items.length" (click)="clearCart()" class="btn btn-sm btn-light"><strong>Clear
+          Cart</strong></button>
     </div>
     <div class="col">
-      <h5 class="float-right">Total Price: {{ cart.totalPrice | currency:'INR'}}</h5>
+      <h5 *ngIf="cart.items.length" class="float-right">Total Price: {{ cart.totalPrice | currency:'INR'}}</h5>
     </div>
     <div class="col">
-      <button (click)="clearCart()" class="btn btn-sm btn-danger float-right"><strong>Clear Cart</strong></button>
+      <a *ngIf="cart.items.length" routerLink="/check-out" class="btn btn-sm btn-primary float-right"><strong>Check
+          Out</strong></a>
     </div>
     <br />
     <br />
@@ -35,5 +38,4 @@
       </div>
     </div>
   </div>
-
 </div>
