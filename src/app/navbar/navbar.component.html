@@ -1,25 +1,30 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-fixed">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Furniture Shopping</a>
+<nav class="navbar sticky-top navbar-expand-sm navbar-fixed">
+  <a style="color: #8B4513" class="navbar-brand" routerLink="/">Wood Cart</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- search box -->
-    <ul class="nav navbar-nav mx-auto">
-      <div class="search-box">
-        <input class="search-txt" type="text" name="" placeholder="Type To Search .....">
-        <a class="search-btn">
-          <i class="fas fa-search"></i>
-        </a>
+    <!-- <ul class="nav navbar-nav mx-auto">
+      <div class="md-form" style="position: relative;">
+        <input #query (keyup)="search(query.value)" type="text" class="form-control" placeholder="Search....">
       </div>
-    </ul>
-
+      <div *ngIf="filteredProducts" style="position: absolute;margin-top:50px">
+        <div id="searchResult">
+          <li *ngFor="let data of filteredProducts" href="#">
+            <a [routerLink]="['/product-details/',filteredProducts.id]">
+              {{data.title}}
+            </a>
+          </li>
+        </div>
+      </div>
+    </ul> -->
+    <ul class="nav navbar-nav mx-auto"></ul>
     <ng-template #anonymousUser>
       <li>
-        <a class="nav-link" routerLink="/login"><i class="far fa-user mr-1"></i>Login</a>
+        <a style="color: #8B4513" class="nav-link" routerLink="/login"><i class="far fa-user mr-1"></i>Login</a>
       </li>
     </ng-template>
 
@@ -28,15 +33,18 @@
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="far fa-user"></i>
-          <span>
+          <span style="color: #8B4513">
             {{ appUser.name }}
           </span>
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
           <ng-container *ngIf="appUser.isAdmin">
             <a class="dropdown-item" routerLink="/admin/orders">Manage Order</a>
-            <a class="dropdown-item" routerLink="/admin/products">Manage Product</a>
+            <a style=" border-bottom: 1px solid black" class="dropdown-item" routerLink="/admin/products">Manage
+              Product</a>
+          </ng-container>
+          <ng-container *ngIf="! appUser.isAdmin">
+            <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
           </ng-container>
           <a class="dropdown-item" (click)="logout()">Log Out</a>
         </div>
@@ -49,10 +57,6 @@
             {{cart.totalItemsCount}}</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link ml-1"><i class="far fa-heart"></i></a>
-      </li>
     </ul>
-
   </div>
 </nav>

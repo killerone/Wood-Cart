@@ -1,19 +1,25 @@
 import { Product } from './product';
 import { ShoppingCartItem } from './shopping-cart-item';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];
+  imgUrl;
 
-  constructor(private itemsMap: { [productId: number]: ShoppingCartItem }) {
+  constructor(private itemsMap: { [productId: number]: ShoppingCartItem }, private storage: AngularFireStorage) {
     this.itemsMap = itemsMap || {};
     for (const productId in itemsMap) {
       const item = itemsMap[productId] as any;
-      this.items.push(new ShoppingCartItem(item.payload.doc.data().product, item.payload.doc.data().quantity,
-        item.payload.doc.data().product.id));
+      const path = item.payload.doc.data().product.imgUrl;
+      this.storage.ref(path).getDownloadURL().subscribe(a => {
+        this.imgUrl = a;
+        this.items.push(new ShoppingCartItem(item.payload.doc.data().product, item.payload.doc.data().quantity,
+          item.payload.doc.data().product.id, this.imgUrl));
+      });
     }
-  } 
+  }
 
-  getQuantity(product: Product) {
+  public getQuantity(product: Product) {
     let quant = 0;
     this.items.forEach(element => {
       if (element.key === product.id) {

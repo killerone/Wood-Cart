@@ -1,0 +1,52 @@
+<div class="container">
+  <div class=" row">
+    <div class="col-lg-12">
+      <div class="card mb-10">
+        <div class="card-body store-body">
+          <div class="product-info">
+            <div class="product-gallery">
+              <div class="product-gallery-featured" *ngIf="imgURL; else loading">
+                <img [src]=[imgURL] alt=" product.title">
+              </div>
+            </div>
+            <div class="product-seller-recommended">
+              <div class="recommended-items card-deck">
+              </div>
+              <!-- /.recommended-items-->
+              <div class="product-description mb-5">
+                <h2 class="mb-5">Description</h2>
+                <p>{{ product.desc}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="product-payment-details">
+            <p></p>
+            <h4 class="product-title mb-2">{{ product.title}}</h4>
+            <h2 class="product-price display-5">{{product.price | currency:'INR'}}</h2>
+            <p></p>
+            <p class="mb-0"><i class="fa fa-truck"></i> Free Delivery All Over India</p>
+            <button *ngIf="!isAdmin" class="btn btn-primary btn-lg btn-block" (click)="addToCart()">Add to Cart</button>
+            <div class="product-description mb-5">
+              <h2 class="mb-5">Features</h2>
+              <dl class="row mb-5">
+                <dt class="col-sm-3">Brand</dt>
+                <dd class="col-sm-9">{{ product.brand }}</dd>
+                <dt class="col-sm-3">Color</dt>
+                <dd class="col-sm-9">{{ product.colour }}</dd>
+                <dt class="col-sm-3">Height</dt>
+                <dd class="col-sm-9">{{ product.height }} inch</dd>
+                <dt class="col-sm-3">Width</dt>
+                <dd class="col-sm-9">{{ product.width }} inch</dd>
+                <dt class="col-sm-3">Material</dt>
+                <dd class="col-sm-9">{{ product.material }}</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <loading-spinner></loading-spinner>
+</ng-template>

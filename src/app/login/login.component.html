@@ -1,1 +1,46 @@
-<button class="btn btn-primary" (click)="login()">Login with Google</button>
+<section class="sign-in">
+	<div class="container">
+		<div class="signin-content bgimg">
+			<div class="signin-form maincont">
+				<h2 class="form-title">Log In</h2>
+				<form #f="ngForm" (ngSubmit)="login(f.value)">
+					<div class="form-group">
+						<label for="email"><i class="zmdi zmdi-email"></i></label>
+						<input ngModel email #email="ngModel" type="email" name="email" id="email"
+							placeholder="Your Email" required />
+					</div>
+
+					<div class="form-group">
+						<label for="pass"><i class="zmdi zmdi-lock"></i></label>
+						<input ngModel #pass="ngModel" type="password" name="pass" id="pass"
+							placeholder="Password (Min. 6 character)" pattern=".{6,}" required />
+					</div>
+
+					<div class="alert alert-danger"
+						*ngIf="(email.touched && email.invalid) || (pass.touched && pass.invalid)">
+						<div *ngIf="(email.touched && email.invalid)">
+							<div *ngIf="email.errors.required">Email is required !!!.</div>
+							<div *ngIf="email.invalid">Enter proper Email.</div>
+						</div>
+						<div *ngIf="(pass.touched && pass.invalid)">
+							<div *ngIf="pass.errors.required">Password is required !!!.</div>
+							<div *ngIf="pass.errors.invalid">Enter proper password.</div>
+							<div *ngIf="pass.errors.pattern">Password should be of minimum 6 character.</div>
+						</div>
+					</div>
+
+					<button class="form-submit btn" [disabled]="!f.valid">Log in</button>
+					<div class="form-group form-button">
+
+					</div>
+					<div class="form-group form-button">
+						<a routerLink="/sign-up">Create Your Account Here!!!</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="timer">
+	<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -10,19 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductFilterComponent implements OnInit {
   categories: Category[];
 
-  @Input('category') category;  
+  @Input('category') category;
   constructor(
     private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    this.categoriesService.getAll().subscribe(categoryArray => {
-      this.categories = categoryArray.map(items => {
-        return {
-          id: items.payload.doc.id,
-          ...items.payload.doc.data()
-        } as Category
-      })
-    })
+    // this.categoriesService.getAll().subscribe(categoryArray => {
+    //   this.categories = categoryArray.map(items => {
+    //     return {
+    //       id: items.payload.doc.id,
+    //       ...items.payload.doc.data()
+    //     } as Category
+    //   })
+    // })
   }
 
 }

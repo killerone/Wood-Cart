@@ -1,0 +1,27 @@
+.container{
+    background-color: #F0F0F0	
+}
+.col-1{
+    margin-top: 2px;
+    cursor: pointer;
+    padding-right: 0;
+}
+.card-body{
+    padding: 2px 15px;
+    margin: 0;
+}
+#second{
+    border:1px solid black;
+    margin: 0;
+}
+.card-footer {
+    margin: 0;
+    padding: 0;
+}
+
+#d{
+    color: green;
+}
+#notd{
+    color:red;
+}

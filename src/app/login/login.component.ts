@@ -1,5 +1,6 @@
 import { AuthService } from './../service/auth.service';
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'login',
@@ -8,10 +9,12 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private spinner: NgxSpinnerService) {
   }
 
-  login() {
-    this.auth.login();
+  login(data) {
+    this.spinner.show();
+    this.auth.login(data.email, data.pass);
+    this.spinner.hide();
   }
 }

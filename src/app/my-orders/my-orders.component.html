@@ -1,3 +1,25 @@
-<p>
-  my-orders works!
-</p>
+<table class="table" border="1">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Sr No</th>
+      <th scope="col">Order Id</th>
+      <th scope="col">Placed On</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders;let i = index">
+      <td>{{ (i+1 )}}</td>
+      <td>{{ order.orderId  }}</td>
+      <td>{{ order.datePlaced | date}}</td>
+      <td>
+        <label id="d" *ngIf="order.status">Delivered</label>
+        <label id="notd" *ngIf="! order.status">Not Delivered</label>
+      </td>
+      <td>
+        <a [routerLink]="['/orders-details/',order.orderId]">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

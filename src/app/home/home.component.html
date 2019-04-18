@@ -1,3 +1,61 @@
-<p>
-  home works!
-</p>
+<div class="container-fluid caousel">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div *ngIf="bed; else loading">
+        <img [src]="bed" width="100%" alt="Bed">
+      </div>
+    </ng-template>
+    <ng-template ngbSlide *ngIf="bed; else loading">
+      <img [src]="sale" width="100%" alt="Sale">
+    </ng-template>
+    <ng-template ngbSlide *ngIf="bed; else loading">
+      <img [src]="decor" width="100%" alt="Decor">
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+
+<div style="margin-top:3rem;" class="container text-center">
+  <h3>BROWSE POPULAR CATEGORIES</h3><br>
+  <div class="row">
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="bed1; else loading"><img routerLink="/products/bed" [src]="bed1" class="img-responsive"
+          style="width:100%" alt="Bed">
+      </figure>
+      <h5 style="margin-bottom:2rem;"><b>Beds</b></h5>
+    </div>
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="sofa; else loading"><img routerLink="/products/sofa" [src]="sofa" class="img-responsive"
+          style="width:100%" alt="Sofa">
+      </figure>
+      <h5><b>Sofas & Lounges</b></h5>
+    </div>
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="dine; else loading"><img routerLink="/products/dining" [src]="dine"
+          class="img-responsive" style="width:100%" alt="Dining Table">
+      </figure>
+      <h5 style="margin-bottom:2rem;"><b>Dining Tables</b></h5>
+    </div>
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="ward; else loading"><img routerLink="/products/wardrobes" [src]="ward"
+          class="img-responsive" style="width:100%" alt="Wardrobes">
+      </figure>
+      <h5><b>Wardrobes</b></h5>
+    </div>
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="study; else loading"><img routerLink="/products/studytable" [src]="study"
+          class="img-responsive" style="width:100%" alt="Study Tables">
+      </figure>
+      <h5 style="margin-bottom:2rem;"><b>Study Tables</b></h5>
+    </div>
+    <div class="col-sm-6">
+      <figure class="t" *ngIf="tv; else loading"><img routerLink="/products/tv" [src]="tv" class="img-responsive"
+          style="width:100%" alt="TV Unit Tables">
+      </figure>
+      <h5><b>TV Unit Tables</b></h5>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <loading-spinner></loading-spinner>
+</ng-template>

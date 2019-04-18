@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent  {
+export class ProductQuantityComponent {
   @Input('product') product: Product;
-  @Input('shopping-cart') shoppingCart; 
+  @Input('shopping-cart') shoppingCart;
 
   constructor(
     private cartService: CartService,

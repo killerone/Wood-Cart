@@ -10,7 +10,10 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FirestoreSettingsToken } from '@angular/fire/firestore';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +41,13 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
 import { OrdersService } from './service/orders.service';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { FilterPipe } from './filter.pipe';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import * as firebase from 'firebase';
 
 @NgModule({
   declarations: [
@@ -57,7 +67,13 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     ProductCardComponent,
     ProductQuantityComponent,
     ShoppingCartSummaryComponent,
-    ShippingFormComponent
+    ShippingFormComponent,
+    OrderDetailsComponent,
+    FilterPipe,
+    LoadingSpinnerComponent,
+    ProfileComponent,
+    ProductDetailsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -69,15 +85,20 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
     AngularFireAuthModule,
     NgbModule.forRoot(),
     DataTableModule,
+    NgxSpinnerModule,
     RouterModule.forRoot([
-      { path: '', component: ProductsComponent },
+      { path: '', component: HomeComponent },
+      { path: 'products/:category', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
+      { path: 'product-details/:id', component: ProductDetailsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'sign-up', component: SignUpComponent },
 
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+      { path: 'my/profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
       {
         path: 'admin/products/new',
@@ -98,6 +119,10 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
         path: 'admin/orders',
         component: AdminOrdersComponent,
         canActivate: [AuthGuard, AdminAuthGuard]
+      }, {
+        path: 'orders-details/:id',
+        component: OrderDetailsComponent,
+        canActivate: [AuthGuard]
       }
     ]),
     BrowserAnimationsModule,
@@ -119,7 +144,9 @@ import { ShippingFormComponent } from './shipping-form/shipping-form.component';
       ProductService,
       CartService,
       AuthGuard,
-      AdminAuthGuard
+      AdminAuthGuard,
+      AngularFireStorage,
+      { provide: FirestoreSettingsToken, useValue: {} }
     ],
   bootstrap: [AppComponent]
 })

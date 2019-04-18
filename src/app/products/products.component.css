@@ -4,3 +4,14 @@
 .card{
     margin-bottom: 1rem;
 }
+.col-2{
+    border-right: 1px solid black;
+}
+
+.float-left{
+    position:fixed;
+}
+
+#temp{
+    margin-bottom: 20px;
+}

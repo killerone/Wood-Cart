@@ -21,11 +21,15 @@
     <div class="card border border-dark shadow h-50 mb-5 bg-black rounded" *ngFor="let item of cart.items">
       <div class="card-body my-auto">
         <div class="row">
-          <div class="col" style="display: inline;">
-            <div [style.backgroundImage]="'url(' + item.product.imgUrl +')'" class="thumbnail"> </div>
+          <div class="col-md-2" style="display: inline;">
+            <div [style.backgroundImage]="'url(' + item.imgUrl +')'" class="thumbnail"> </div>
           </div>
-          <div class="col align-middle" style="display: inline;">
-            <h4 class="align-middle">{{ item.product.title }}</h4>
+          <div class="col-md-6 align-middle" style="display: inline;">
+            <h4 class="align-middle">
+              <a [routerLink]="['/product-details/',item.product.id]">
+                {{ item.product.title }}
+              </a>
+            </h4>
           </div>
           <div class="col-md-2" style="display: inline;">
             <product-quantity [product]="item.product" [shopping-cart]="cart">

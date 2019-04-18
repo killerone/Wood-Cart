@@ -3,14 +3,17 @@
 }
 
 .navbar-fixed{
-    background-color: #1E1A11;
+    background-color: #D8CD80;
 }
-
+a{
+    cursor: pointer;
+}
 .fa-search, .far, .navbar-brand, .fas, .fa,span,.dropdown-toggle{
     color:white;
 }
-.far, .fas{
-    font-size: 1.3rem;
+.far, .fas, .nav-link{
+    font-size: 1.1rem;
+    color: #8B4513;
 }
 .search-btn{
     color: white;
@@ -38,3 +41,24 @@
     padding: 0 15px;
     border-radius: 20px;
 }
+
+#searchResult{
+    background-color:honeydew;
+    border:solid 1px black;
+    border-radius: 5px;
+}
+.navbar-brand{
+    font-family: "Bauhaus 93";
+    font-size: 1.7rem;
+    color:#8B4513;
+}
+/* .navbar-brand:hover{
+    font-family: "Bauhaus 93";
+    font-size: 1.7rem;
+    color:#8B4513;
+}
+.navbar-brand::after{
+    font-family: "Bauhaus 93";
+    font-size: 1.7rem;
+    color:#8B4513;
+} */

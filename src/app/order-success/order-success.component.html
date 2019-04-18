@@ -1,3 +1,5 @@
-<p>
-  order-success works!
-</p>
+<h1 class="mt-5">Your Order has been places successfully </h1>
+<h3>Your Order Id: {{ id }}</h3>
+<div>
+  <h5>To check order</h5><a [routerLink]="['/orders-details/',id]">Click here</a>
+</div>

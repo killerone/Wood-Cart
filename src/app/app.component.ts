@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './service/auth.service';
 import { Component } from '@angular/core';
 import { UserService } from './service/user.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,13 @@ import { UserService } from './service/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(auth: AuthService, router: Router, private userservice: UserService) {
+  constructor(
+    auth: AuthService,
+    router: Router,
+    private userservice: UserService) {
     auth.user$.subscribe(user => {
       if (user) {
-        userservice.save(user);
+        // userservice.save(user);
 
         let retunUrl = localStorage.getItem('returnUrl');
 
@@ -22,5 +26,9 @@ export class AppComponent {
         }
       }
     })
+
+    firebase.firestore().settings({
+      timestampsInSnapshots: true
+    });
   }
 }

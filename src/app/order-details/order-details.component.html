@@ -1,0 +1,93 @@
+<div class="card shadow p-4 mb-4 bg-white" *ngIf="order; else loading;">
+  <div class="card-header">
+    <h3>Shipping Details</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <label class="col-3">
+        <h6>Name</h6>
+      </label>
+      <label class="col-3">{{ order.shipping.name}}</label>
+    </div>
+    <div class="row">
+      <label class="col-3">
+        <h6>Address</h6>
+      </label>
+      <label class="col-3">{{ order.shipping.address}}</label>
+    </div>
+    <div class="row">
+      <label class="col-3">
+        <h6>Phone Number</h6>
+      </label>
+      <label class="col-3">{{ order.shipping.phno}}</label>
+      <label class="col-3"></label>
+    </div>
+    <div class="row">
+      <label class="col-3">
+        <h6>Status</h6>
+      </label>
+      <div class="col-3">
+        <label *ngIf="order.status">Delivered</label>
+        <label *ngIf="! order.status">Not Delivered</label>
+      </div>
+      <div class="col-3">
+        <input type="button" *ngIf="isAdmin" (click)="updateStatus()" class="btn btn-primary" [disabled]="order.status"
+          value="Update">
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-3">
+        <h6>Confirmation</h6>
+      </label>
+      <label class="col">{{ feedBack }}</label>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow p-4 mb-4 bg-white" *ngIf="order; else loading;">
+  <div class="card-header">
+    <h3>Orders Details</h3>
+  </div>
+  <div class="card-body">
+    <div>
+      <table class="table">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Sr No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of order.items;let i = index">
+            <td>
+              <strong>{{ i+1 }}</strong>
+            </td>
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.quantity}}</td>
+            <td>{{ item.totalPrice| currency:'INR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <loading-spinner></loading-spinner>
+</ng-template>
+
+<div class="card" *ngIf="isAdmin">
+  <div class="card-header">
+    Feedback
+  </div>
+  <div class="card-body">
+    <div>
+      <textarea rows="2" cols="130" name="feedback" [(ngModel)]="feedBack" placeholder="Confirmation"
+        id="feedback"></textarea>
+    </div>
+    <div>
+      <input type="button" (click)="addFeedback()" class="btn btn-primary" value="Add">
+    </div>
+  </div>
+</div>

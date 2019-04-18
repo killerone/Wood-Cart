@@ -1,12 +1,29 @@
-<div *ngIf="product.title" class="card ">
-  <img class="card-img-top img-thumbnail" style="height: 15rem" *ngIf="product.imgUrl" alt="{{ product.title }}"
-    [src]="product.imgUrl">
-  <div class="card-body">
-    <h4 class="card-title"><b>{{ product.title }}</b></h4>
-    <p class="card-text"><b>{{ product.price | currency:'INR'}}</b></p>
-  </div>
-  <div *ngIf="showActions && shoppingCart" class="card-footer" style="padding: 0px">
-    <button class="btn btn-secondary btn-block " (click)="addToCart()">Add to
-      cart</button>
+<ng-template #loading>
+  <loading-spinner></loading-spinner>
+</ng-template>
+
+<div class="row">
+  <div *ngIf="product.title" class="card" style="width: 17rem;">
+    <div class="product-grid3">
+      <div class="product-image3">
+        <img class="pic-1" *ngIf="imageUrl;else loading" alt="{{ product.title }}" [src]="imageUrl">
+      </div>
+      <div class="product-content">
+        <h3 class="title"><a [routerLink]="['/product-details/',product.id]"><b>{{ product.title }}</b></a></h3>
+        <div class="price">
+          <div class="row">
+            <div class="col">
+              <b>{{ product.price | currency:'INR'}}</b>
+            </div>
+            <div *ngIf="!isAdmin" class="col">
+              <a (click)="addToCart()" class="fa fa-shopping-cart" style="color:rgb(230, 133, 22)"></a>
+            </div>
+            <div *ngIf="isAdmin" class="col">
+              <a [routerLink]="['/admin/products/', product.id]" class="fas fa-edit" style="color:rgb(230, 133, 22)"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

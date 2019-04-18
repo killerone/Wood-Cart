@@ -1,11 +1,22 @@
 <div class="sticky-top">
   <div class="list-group">
-    <a class="list-group-item list-group-item-action" [class.active]="!category" routerLink="/">
-      All categories
-    </a>
-    <a *ngFor="let c of categories" class="list-group-item list-group-item-action" routerLink="/"
-      [queryParams]="{ category: c.id}" [class.active]="category === c.id">
-      {{ c.name }}
-    </a>
+    <label><strong>Price</strong></label>
+    <label><input type="radio" name="price" [routerLink]="['/products/',category]"> All </label>
+    <label><input type="radio" name="price" [routerLink]="['/products/',category]"
+        [queryParams]="{ price: '1000-5000' }"> ₹ 1000 - ₹
+      5000
+    </label>
+    <label><input type="radio" name="price" [routerLink]="['/products/',category]"
+        [queryParams]="{ price: '5000-10000' }"> ₹ 5000 - ₹
+      10000
+    </label>
+    <label><input type="radio" name="price" [routerLink]="['/products/',category]"
+        [queryParams]="{ price: '10000-20000' }"> ₹ 10000 - ₹
+      20000
+    </label>
+    <label><input type="radio" name="price" [routerLink]="['/products/',category]"
+        [queryParams]="{ price: '20000-30000' }"> ₹ 20000 - ₹
+      30000
+    </label>
   </div>
 </div>

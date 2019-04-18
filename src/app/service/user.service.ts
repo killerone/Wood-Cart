@@ -10,11 +10,11 @@ export class UserService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  save(user: firebase.User) {
-    this.firestore.doc('/users/' + user.uid).set({
-      name: user.displayName,
-      email: user.email,
-      isAdmin: true
+  save(uid, name, email) {
+    return this.firestore.doc('/users/' + uid).set({
+      name: name,
+      email: email,
+      isAdmin: false
     });
   }
 

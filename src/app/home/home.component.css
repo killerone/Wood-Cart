@@ -1,0 +1,27 @@
+.caousel{
+    margin-top: 2rem;
+}
+
+.t {
+    margin: 2%;
+    overflow: hidden;
+}
+
+figure img{
+    max-width: 100%;
+  
+  -moz-transition: all 0.9s;
+  -webkit-transition: all 0.9s;
+  transition: all 0.9s;
+}
+
+figure:hover img{
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+h3,h5{
+    font-family: "Constantia";
+}

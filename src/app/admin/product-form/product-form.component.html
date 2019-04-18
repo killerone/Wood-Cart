@@ -19,8 +19,8 @@
             type="number" required>
         </div>
         <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
-          <div *ngIf="price.error.required">Price is required.</div>
-          <div *ngIf="price.error.min">Price should be greater than 0.</div>
+          <div *ngIf="price.errors.required">Price is required.</div>
+          <div *ngIf="price.errors.min">Price should be greater than 0.</div>
         </div>
       </div>
 
@@ -37,11 +37,78 @@
       </div>
 
       <div class="form-group">
+        <label for="brand">Brand</label>
+        <input #brand="ngModel" [(ngModel)]="product.brand" name="brand" id="brand" class="form-control" type="text"
+          required>
+        <div class="alert alert-danger" *ngIf="brand.touched && brand.invalid">
+          Brand Name is required.
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="form-group col-md-6">
+          <label for="colour">Colour</label>
+          <input #colour="ngModel" [(ngModel)]="product.colour" name="colour" id="colour" class="form-control"
+            type="text" required>
+          <div class="alert alert-danger" *ngIf="colour.touched && colour.invalid">
+            Colour should be specified.
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="material">Material</label>
+          <input #material="ngModel" [(ngModel)]="product.material" name="material" id="material" class="form-control"
+            type="text" required>
+          <div class="alert alert-danger" *ngIf="material.touched && material.invalid">
+            Material type should be specified.
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="form-group col-md-4">
+          <label for="height">Height</label>
+          <input #height="ngModel" [(ngModel)]="product.height" name="height" id="height" [min]='0' class="form-control"
+            type="number" required>
+          <div class="input-group-prepend">
+            <div class="input-group-text">inch</div>
+          </div>
+          <div class="alert alert-danger" *ngIf="height.touched && height.invalid">
+            <div *ngIf="height.errors.required">Height is required.</div>
+            <div *ngIf="height.errors.min">Height should be greater than 0.</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="width">Width</label>
+          <input #width="ngModel" [(ngModel)]="product.width" name="width" id="width" [min]='0' class="form-control"
+            type="number" required>
+          <div class="input-group-prepend">
+            <div class="input-group-text">inch</div>
+          </div>
+          <div class="alert alert-danger" *ngIf="width.touched && width.invalid">
+            <div *ngIf="width.errors.required">Width is required.</div>
+            <div *ngIf="width.errors.min">Width should be greater than 0.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <input #desc="ngModel" [(ngModel)]="product.desc" name="desc" id="desc" class="form-control" type="text"
+          required>
+        <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid">
+          Enter Product Description.
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for="imgUrl">Image</label>
-        <input #imgUrl="ngModel" [(ngModel)]="product.imgUrl" name="imgUrl" id="imageUrl" class="form-control"
-          type="text" required>
-        <div class="alert alert-danger" *ngIf="imgUrl.touched && imgUrl.invalid">
-          Image Url is required.
+        <input #file style="display:none" name="image" id="image" type="file" (change)="preview(file.files)"
+          accept="image/*">
+        <button type="button" (click)="file.click()">Choose Image</button>
+        <div class="alert alert-danger" *ngIf="file.touched && file.invalid">
+          Image is required.
         </div>
       </div>
 
@@ -50,6 +117,16 @@
     </form>
   </div>
   <div class="col-md-6">
-    <product-card [product]="product" [show-actions]="false"></product-card>
+    <div *ngIf="product.title" class="card ">
+      <img class="card-img-top img-thumbnail" style="height: 15rem" *ngIf="imgURL;else loading;"
+        alt="{{ product.title }}" [src]="imgURL">
+      <div class="card-body">
+        <h4 class="card-title"><b>{{ product.title }}</b></h4>
+        <p class="card-text"><b>{{ product.price | currency:'INR'}}</b></p>
+      </div>
+    </div>
   </div>
 </div>
+<ng-template #loading>
+  <loading-spinner></loading-spinner>
+</ng-template>

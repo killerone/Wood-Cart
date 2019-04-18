@@ -1,3 +1,25 @@
-<p>
-  admin-orders works!
-</p>
+<table class="table" border="1">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Sr No</th>
+      <th scope="col">Order By</th>
+      <th scope="col">Date</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders$ | async;let i = index">
+      <td>{{ (i+1 )}}</td>
+      <td>{{ order.payload.doc.data().shipping.name }}</td>
+      <td>{{ order.payload.doc.data().datePlaced | date}}</td>
+      <td>
+        <label id="d" *ngIf="order.payload.doc.data().status">Delivered</label>
+        <label id="notd" *ngIf="! order.payload.doc.data().status">Not Delivered</label>
+      </td>
+      <td>
+        <a [routerLink]="['/orders-details/',order.payload.doc.id]">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
