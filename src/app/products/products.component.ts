@@ -4,6 +4,7 @@ import { Product } from './../models/product';
 import { ProductService } from './../service/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'products',
   templateUrl: './products.component.html',
@@ -21,16 +22,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private title: Title) {
   }
 
   async ngOnInit() {
+    this.title.setTitle("Products");
 
     this.cart$ = (await this.cartService.getCart());
 
     this.route.paramMap.subscribe(param => {
-      this.category = param.get("category")
-
+      this.category = param.get("category");
+      this.title.setTitle(this.toTitleCase(this.category));
       this.productSubscription = this.productService.getAll().subscribe(productArray => {
         productArray.map(item => {
           if (item.payload.doc.get("category") == this.category) {
@@ -62,5 +65,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
 
+  }
+
+  private toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
   }
 }

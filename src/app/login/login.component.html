@@ -3,30 +3,26 @@
 		<div class="signin-content bgimg">
 			<div class="signin-form maincont">
 				<h2 class="form-title">Log In</h2>
+				<small class="mt-0 mb-1 text-danger" *ngIf="error">{{error}}</small>
 				<form #f="ngForm" (ngSubmit)="login(f.value)">
 					<div class="form-group">
 						<label for="email"><i class="zmdi zmdi-email"></i></label>
 						<input ngModel email #email="ngModel" type="email" name="email" id="email"
 							placeholder="Your Email" required />
+						<small class="mt-0 mb-1 text-danger" *ngIf="email.touched && email.errors">
+							<div *ngIf="email.errors.email && !email.errors.required">Please enter a valid Email.</div>
+							<div *ngIf="email.errors.required">An Email is required.</div>
+						</small>
 					</div>
 
 					<div class="form-group">
 						<label for="pass"><i class="zmdi zmdi-lock"></i></label>
 						<input ngModel #pass="ngModel" type="password" name="pass" id="pass"
 							placeholder="Password (Min. 6 character)" pattern=".{6,}" required />
-					</div>
-
-					<div class="alert alert-danger"
-						*ngIf="(email.touched && email.invalid) || (pass.touched && pass.invalid)">
-						<div *ngIf="(email.touched && email.invalid)">
-							<div *ngIf="email.errors.required">Email is required !!!.</div>
-							<div *ngIf="email.invalid">Enter proper Email.</div>
-						</div>
-						<div *ngIf="(pass.touched && pass.invalid)">
-							<div *ngIf="pass.errors.required">Password is required !!!.</div>
-							<div *ngIf="pass.errors.invalid">Enter proper password.</div>
-							<div *ngIf="pass.errors.pattern">Password should be of minimum 6 character.</div>
-						</div>
+						<small class="mt-0 mb-1 text-danger" *ngIf="pass.touched && pass.errors">
+							<div *ngIf="pass.errors.pattern">Password should be minimum 6 characters.</div>
+							<div *ngIf="pass.errors.required">A Password is required is required.</div>
+						</small>
 					</div>
 
 					<button class="form-submit btn" [disabled]="!f.valid">Log in</button>

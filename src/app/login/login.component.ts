@@ -1,6 +1,8 @@
-import { AuthService } from './../service/auth.service';
+
 import { Component } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Title } from '@angular/platform-browser';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -8,13 +10,32 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-  constructor(private auth: AuthService, private spinner: NgxSpinnerService) {
+  error: string;
+  constructor(
+    private afAuth: AngularFireAuth,
+    private title: Title,
+    private router: Router) {
+    this.title.setTitle("Login");
   }
 
   login(data) {
-    this.spinner.show();
-    this.auth.login(data.email, data.pass);
-    this.spinner.hide();
+    // this.authService.login(data.email, data.pass);
+    this.afAuth.auth.signInWithEmailAndPassword(data.email, data.pass)
+      .then(() => {
+        this.afAuth.authState.subscribe(user => {
+          this.router.navigate(["/"]);
+        })
+      })
+      .catch(err => {
+        if (err.code === 'auth/user-not-found') {
+          this.error = 'No User with the given Email found.';
+        }
+        if (err.code === 'auth/wrong-password') {
+          this.error = 'Password incorrect!';
+        }
+        if (err.code === 'auth/user-disabled') {
+          this.error = 'User has been banned. Please contact the administrator.';
+        }
+      })
   }
 }

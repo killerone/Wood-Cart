@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'product-form',
@@ -29,23 +30,25 @@ export class ProductFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private tostr: ToastrService,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    private title:Title) {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
+      this.title.setTitle("Edit");
       this.productService.get(this.id).pipe(take(1)).subscribe((p: Product) => {
         this.product = new Product(p);
         this.imgPath = this.product.imgUrl
         this.storage.ref(this.product.imgUrl).getDownloadURL().subscribe(a => {
           this.imgURL = a;
-          console.log(this.imgURL)
         });
       });
     }
-    else { this.product = new Product(); }
+    else { this.title.setTitle("Add"); this.product = new Product(); }
   }
 
   ngOnInit() {
+    
     this.categorieService.getAll().subscribe(actionArray => {
       this.categories = actionArray.map(item => {
         return ({

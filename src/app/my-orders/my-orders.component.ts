@@ -1,7 +1,9 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../service/orders.service';
 import { Order } from '../models/order';
 import { AuthService } from '../service/auth.service';
+
 
 @Component({
   selector: 'my-orders',
@@ -15,11 +17,12 @@ export class MyOrdersComponent implements OnInit {
   uId: string;
   orders: Order[] = [];
 
-  constructor(private orderService: OrdersService, private authService: AuthService) {
+  constructor(private orderService: OrdersService, private authService: AuthService, private title: Title) {
     this.authService.user$.subscribe(user => this.uId = user.uid);
   }
 
   ngOnInit() {
+    this.title.setTitle("My Orders");
     this.orders = []
     try {
       this.orderService.getAll().subscribe(orderArray => {

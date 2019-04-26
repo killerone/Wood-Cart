@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../service/cart.service';
 
@@ -9,13 +10,14 @@ import { CartService } from '../service/cart.service';
 export class ShoppingCartComponent implements OnInit {
 
   cart$;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private title: Title) { }
 
   async ngOnInit() {
+    this.title.setTitle("Cart");
     this.cart$ = await this.cartService.getCart();
   }
 
-  clearCart(){
+  clearCart() {
     this.cartService.clearCart()
   }
 }

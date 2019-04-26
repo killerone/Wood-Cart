@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
   cart$: Observable<ShoppingCart>;
   products: Product[];
   filteredProducts: Product[];
+  isAdmin = false;
   constructor(
     private afAuth: AngularFireAuth,
     private auth: AuthService,
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+    localStorage.clear();
   }
 
   async ngOnInit() {
@@ -51,8 +53,11 @@ export class NavbarComponent implements OnInit {
       this.auth.appUser$.subscribe(appUser => {
         if (appUser) {
           this.appUser = appUser;
-          if (this.appUser.isAdmin)
+          console.log(this.appUser);
+          if (this.appUser.isAdmin) {
             localStorage.setItem('isAdmin', (this.appUser.isAdmin).toString());
+            this.isAdmin = true;
+          }
         }
       });
     }
@@ -63,7 +68,7 @@ export class NavbarComponent implements OnInit {
       this.products.filter(p => p['title'].toLowerCase().includes(query.toLowerCase())) :
       null;
 
-      console.log(this.filteredProducts)
+    console.log(this.filteredProducts)
   }
 
 }

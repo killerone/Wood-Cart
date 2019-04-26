@@ -2,6 +2,8 @@ import { Observable } from 'rxjs';
 import { ShoppingCart } from './../models/shopping-cart';
 import { CartService } from './../service/cart.service';
 import { Component, OnInit, } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'check-out',
   templateUrl: './check-out.component.html',
@@ -13,9 +15,11 @@ export class CheckOutComponent implements OnInit {
 
 
   constructor(
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private title: Title) { }
 
   async ngOnInit() {
+    this.title.setTitle("Checkout");
     this.cart$ = await this.cartService.getCart();
   }
 

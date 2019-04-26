@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Product } from './../../models/product';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './../../service/product.service';
@@ -15,7 +16,7 @@ export class AdminProductComponent implements OnInit {
   subscription: Subscription;
 
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private title: Title) {
     this.subscription = this.productService.getAll().subscribe(
       products => {
         this.filteredProducts = this.products = products.map(item => {
@@ -28,6 +29,7 @@ export class AdminProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.title.setTitle("Products");
     this.productService.getAll().subscribe(productArray => {
       this.products = productArray.map(item => {
         return {

@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../service/orders.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'order-details',
@@ -16,7 +17,8 @@ export class OrderDetailsComponent implements OnInit {
   isAdmin = false;
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrdersService) {
+    private orderService: OrdersService,
+    private title:Title) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.orderService.get(this.id).subscribe(item => {
       this.order = item;
@@ -27,7 +29,7 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.isAdmin = (localStorage.getItem("isAdmin") == 'true');
-    console.log(this.isAdmin)
+    this.title.setTitle("Order Details")
   }
   addFeedback() {
     this.orderService.updateFeedback(this.id, this.feedBack);

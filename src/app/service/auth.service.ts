@@ -27,11 +27,12 @@ export class AuthService {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
 
-    this.afAuth.auth.signInWithEmailAndPassword(email, password).then(() => {
-      this.afAuth.authState.subscribe(user => {
-        this.router.navigate(["/"]);
-      })
-    })
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.afAuth.authState.subscribe(user => {
+          this.router.navigate(["/"]);
+        })
+      });
   }
 
   signUp(user) {

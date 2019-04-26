@@ -98,7 +98,6 @@ import * as firebase from 'firebase';
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-      { path: 'my/profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
       {
         path: 'admin/products/new',

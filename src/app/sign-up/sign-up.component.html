@@ -6,57 +6,52 @@
           <div class="signup-form">
             <h2 class="form-title">Sign up</h2>
             <form #f="ngForm" (ngSubmit)="save(f.value)" class="register-form" id="register-form">
+
               <div class="form-group">
                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                 <input ngModel #name="ngModel" type="text" name="name" id="name" placeholder="Your Name" required />
+                <small class="mt-0 mb-1 text-danger" *ngIf="name.touched && name.errors">
+                  <div *ngIf="name.errors.required">Name is required !!!.</div>
+                </small>
               </div>
+
               <div class="form-group">
                 <label for="email"><i class="zmdi zmdi-email"></i></label>
                 <input ngModel email #email="ngModel" type="email" name="email" id="email" placeholder="Your Email"
                   required />
+                <small class="mt-0 mb-1 text-danger" *ngIf="email.touched && email.errors">
+                  <div *ngIf="email.errors.email && !email.errors.required">Please enter a valid Email.</div>
+                  <div *ngIf="email.errors.required">An Email is required.</div>
+                </small>
               </div>
+
               <div class="form-group">
                 <label for="pass"><i class="zmdi zmdi-lock"></i></label>
                 <input ngModel #pass="ngModel" type="password" name="pass" id="pass"
-                  placeholder="Password (Min. 6 character)" [min]='6' required />
+                  placeholder="Password (Min. 6 character)" pattern=".{6,}" required />
+                <small class="mt-0 mb-1 text-danger" *ngIf="pass.touched && pass.errors">
+                  <div *ngIf="pass.errors.pattern">Password should be minimum 6 characters.</div>
+                  <div *ngIf="pass.errors.required">A Password is required is required.</div>
+                </small>
               </div>
+
               <div class="form-group">
                 <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
                 <input ngModel #re_pass="ngModel" type="password" name="re_pass" id="re_pass"
-                  placeholder="Repeat your password" [min]='6' required pattern="{{ pass.value }}" />
-              </div>
-
-              <div class="alert alert-danger"
-                *ngIf="(name.touched && name.invalid) || (email.touched && email.invalid) || (pass.touched && pass.invalid) || (re_pass.touched && re_pass.invalid)">
-                <div *ngIf="(name.touched && name.invalid)">
-                  <div *ngIf="name.errors.required">Name is required !!!.</div>
-                </div>
-                <div *ngIf="(email.touched && email.invalid)">
-                  <div *ngIf="email.errors.required">Email is required !!!.</div>
-                  <div *ngIf="email.invalid">Enter proper Email.</div>
-                </div>
-                <div *ngIf="(pass.touched && pass.invalid)">
-                  <div *ngIf="pass.errors.required">Password is required !!!.</div>
-                  <div *ngIf="pass.errors.invalid">Enter proper password.</div>
-                  <div *ngIf="pass.errors.min">Password should be of minimum 6 character.</div>
-                </div>
-                <div *ngIf="(re_pass.touched && re_pass.invalid)">
-                  <div *ngIf="re_pass.errors.required">Password is required !!!.</div>
+                  placeholder="Repeat your password" required pattern="{{ pass.value }}" />
+                <small class="mt-0 mb-1 text-danger" *ngIf="(re_pass.touched && re_pass.invalid)">
+                  <div *ngIf="re_pass.errors.required">Confirm password is required !!!.</div>
                   <div *ngIf="re_pass.errors.invalid">Enter proper password.</div>
                   <div *ngIf="re_pass.errors.min">Password should be of minimum 6 character.</div>
                   <div *ngIf="re_pass.errors.pattern">Password should be same.</div>
-                </div>
+                </small>
               </div>
+
               <div class="form-group form-button">
-                <button class="form-submit" [disabled]="!f.valid">Register</button>
+                <button class="btn form-submit" [disabled]="!f.valid">Register</button>
               </div>
             </form>
-
           </div>
-          <!-- <div class="signup-image col">
-            <figure><img src="https://images4.alphacoders.com/260/260758.jpg  " alt="
-                sing up image"></figure>
-          </div> -->
         </div>
       </div>
     </section>

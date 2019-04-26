@@ -6,9 +6,9 @@
         <label for="title">Title</label>
         <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" class="form-control" type="text"
           required>
-        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-          Title is required.
-        </div>
+        <small class="mt-0 mb-1 text-danger" *ngIf="title.touched && title.invalid">
+          <div>Title is required.</div>
+        </small>
       </div>
 
       <div class="form-group">
@@ -18,10 +18,10 @@
           <input #price="ngModel" [min]='0' [(ngModel)]="product.price" name="price" id="price" class="form-control"
             type="number" required>
         </div>
-        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+        <small class="mt-0 mb-1 text-danger" *ngIf="price.touched && price.invalid">
           <div *ngIf="price.errors.required">Price is required.</div>
           <div *ngIf="price.errors.min">Price should be greater than 0.</div>
-        </div>
+        </small>
       </div>
 
       <div class="form-group">
@@ -31,18 +31,18 @@
           <option value=""></option>
           <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
         </select>
-        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+        <small class="mt-0 mb-1 text-danger" *ngIf="category.touched && category.invalid">
           Category is required.
-        </div>
+        </small>
       </div>
 
       <div class="form-group">
         <label for="brand">Brand</label>
         <input #brand="ngModel" [(ngModel)]="product.brand" name="brand" id="brand" class="form-control" type="text"
           required>
-        <div class="alert alert-danger" *ngIf="brand.touched && brand.invalid">
+        <small class="mt-0 mb-1 text-danger" *ngIf="brand.touched && brand.invalid">
           Brand Name is required.
-        </div>
+        </small>
       </div>
 
       <div class="row my-2">
@@ -50,18 +50,18 @@
           <label for="colour">Colour</label>
           <input #colour="ngModel" [(ngModel)]="product.colour" name="colour" id="colour" class="form-control"
             type="text" required>
-          <div class="alert alert-danger" *ngIf="colour.touched && colour.invalid">
+          <small class="mt-0 mb-1 text-danger" *ngIf="colour.touched && colour.invalid">
             Colour should be specified.
-          </div>
+          </small>
         </div>
 
         <div class="form-group col-md-6">
           <label for="material">Material</label>
           <input #material="ngModel" [(ngModel)]="product.material" name="material" id="material" class="form-control"
             type="text" required>
-          <div class="alert alert-danger" *ngIf="material.touched && material.invalid">
+          <small class="mt-0 mb-1 text-danger" *ngIf="material.touched && material.invalid">
             Material type should be specified.
-          </div>
+          </small>
         </div>
       </div>
 
@@ -73,10 +73,10 @@
           <div class="input-group-prepend">
             <div class="input-group-text">inch</div>
           </div>
-          <div class="alert alert-danger" *ngIf="height.touched && height.invalid">
+          <small class="mt-0 mb-1 text-danger" *ngIf="height.touched && height.invalid">
             <div *ngIf="height.errors.required">Height is required.</div>
             <div *ngIf="height.errors.min">Height should be greater than 0.</div>
-          </div>
+          </small>
         </div>
 
         <div class="form-group col-md-4">
@@ -86,10 +86,10 @@
           <div class="input-group-prepend">
             <div class="input-group-text">inch</div>
           </div>
-          <div class="alert alert-danger" *ngIf="width.touched && width.invalid">
+          <small class="mt-0 mb-1 text-danger" *ngIf="width.touched && width.invalid">
             <div *ngIf="width.errors.required">Width is required.</div>
             <div *ngIf="width.errors.min">Width should be greater than 0.</div>
-          </div>
+          </small>
         </div>
       </div>
 
@@ -97,19 +97,19 @@
         <label for="desc">Description</label>
         <input #desc="ngModel" [(ngModel)]="product.desc" name="desc" id="desc" class="form-control" type="text"
           required>
-        <div class="alert alert-danger" *ngIf="desc.touched && desc.invalid">
+        <small class="mt-0 mb-1 text-danger" *ngIf="desc.touched && desc.invalid">
           Enter Product Description.
-        </div>
+        </small>
       </div>
 
-      <div class="form-group">
+      <div *ngIf="!id" class="form-group">
         <label for="imgUrl">Image</label>
         <input #file style="display:none" name="image" id="image" type="file" (change)="preview(file.files)"
           accept="image/*">
         <button type="button" (click)="file.click()">Choose Image</button>
-        <div class="alert alert-danger" *ngIf="file.touched && file.invalid">
+        <small class="mt-0 mb-1 text-danger" *ngIf="file.touched && file.invalid">
           Image is required.
-        </div>
+        </small>
       </div>
 
       <button class="btn btn-success" [disabled]="!f.valid">Add</button>

@@ -1,5 +1,5 @@
 
-import { ShoppingCart } from './../models/shopping-cart';
+import { Title } from '@angular/platform-browser';
 import { ProductService } from './../service/product.service';
 import { Product } from './../models/product';
 import { ActivatedRoute } from '@angular/router';
@@ -27,11 +27,13 @@ export class ProductDetailsComponent implements OnInit {
     private productService: ProductService,
     private storage: AngularFireStorage,
     private cartService: CartService,
-    private tostr: ToastrService) {
+    private tostr: ToastrService,
+    private title:Title) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
+    this.title.setTitle("Product Details")
     if (this.id) {
       this.productService.get(this.id).pipe(take(1)).subscribe((p: Product) => {
         this.product = new Product(p);

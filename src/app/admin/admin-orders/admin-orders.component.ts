@@ -1,7 +1,6 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/service/orders.service';
-import { Order } from 'src/app/models/order';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'admin-orders',
@@ -11,12 +10,12 @@ import { Subscription } from 'rxjs';
 export class AdminOrdersComponent implements OnInit {
 
   orders$;
-  constructor(private orderService: OrdersService) {
+  constructor(private orderService: OrdersService, private title: Title) {
     this.orders$ = orderService.getAll();
   }
 
   ngOnInit() {
-    
+    this.title.setTitle("Orders");
   }
 
 }
