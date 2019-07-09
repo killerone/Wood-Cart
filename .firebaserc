@@ -1,5 +1,14 @@
 {
   "projects": {
     "furniture-shopping": "furniture-shopping-0311"
+  },
+  "targets": {
+    "furniture-shopping-0311": {
+      "hosting": {
+        "en": [
+          "woodcart"
+        ]
+      }
+    }
   }
 }

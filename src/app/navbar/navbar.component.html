@@ -1,48 +1,53 @@
 <nav class="navbar sticky-top navbar-expand-sm navbar-fixed">
-  <a style="color: #8B4513" class="navbar-brand" routerLink="/">Wood Cart</a>
+  <div class="container">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <ul class="nav navbar-nav mx-auto"></ul>
-    <ng-template #anonymousUser>
-      <li>
-        <a style="color: #8B4513" class="nav-link" routerLink="/login"><i class="far fa-user mr-1"></i>Login</a>
-      </li>
-    </ng-template>
+    <a style="color: #8B4513" class="navbar-brand" routerLink="/">Wood Cart</a>
 
-    <ul class="navbar-nav">
-      <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item  dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="far fa-user"></i>
-          <span style="color: #8B4513">
-            {{ appUser.name }}
-          </span>
-        </a>
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <ng-container *ngIf="appUser.isAdmin">
-            <a class="dropdown-item" routerLink="/admin/orders">Manage Order</a>
-            <a style=" border-bottom: 1px solid black" class="dropdown-item" routerLink="/admin/products">Manage
-              Product</a>
-          </ng-container>
-          <ng-container *ngIf="! appUser.isAdmin">
-            <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
-          </ng-container>
-          <a class="dropdown-item" (click)="logout()">Log Out</a>
-        </div>
-      </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <li class="nav-item" *ngIf="! isAdmin">
-        <a class="nav-link" routerLink="/shopping-cart">
-          <span><i class="fas fa-shopping-cart"></i></span>
-          <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
-            {{cart.totalItemsCount}}</span>
-        </a>
-      </li>
-    </ul>
+      <ul class="nav navbar-nav mx-auto"></ul>
+      <ng-template #anonymousUser>
+        <li>
+          <a style="color: #8B4513" class="nav-link" routerLink="/login"><i class="far fa-user mr-1"></i>Login</a>
+        </li>
+      </ng-template>
+
+      <ul class="navbar-nav">
+        <li *ngIf="appUser; else anonymousUser" ngbDropdown class="nav-item  dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-user"></i>
+            <span style="color: #8B4513">
+              {{ appUser.name }}
+            </span>
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ng-container *ngIf="appUser.isAdmin">
+              <a class="dropdown-item" routerLink="/admin/orders">Manage Order</a>
+              <a style=" border-bottom: 1px solid black" class="dropdown-item" routerLink="/admin/products">Manage
+                Product</a>
+            </ng-container>
+            <ng-container *ngIf="! appUser.isAdmin">
+              <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+            </ng-container>
+            <a class="dropdown-item" (click)="logout()">Log Out</a>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="! isAdmin">
+          <a class="nav-link" routerLink="/shopping-cart">
+            <span><i class="fas fa-shopping-cart"></i></span>
+            <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart">
+              {{cart.totalItemsCount}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </nav>

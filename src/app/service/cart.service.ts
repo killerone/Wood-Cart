@@ -13,12 +13,17 @@ export class CartService {
 
   constructor(private firestore: AngularFirestore,private storage: AngularFireStorage) { }
 
-  async addToCart(product: Product) {
+  addToCart(product: Product) {
     this.updateItemQuantity(product, 1);
   }
 
-  async removeFromCart(product: Product) {
+  removeFromCart(product: Product) {
     this.updateItemQuantity(product, -1);
+  }
+
+  deleteFromCart(product:Product){
+    console.log(product);
+    this.updateItemQuantity(product, 0);
   }
 
   async clearCart() {
@@ -65,9 +70,7 @@ export class CartService {
     const items = this.getItem(cartId, product.id);
     items.snapshotChanges().pipe(take(1)).subscribe(item => {
       if (item.payload.exists) {
-        const quantity = item.payload.get('quantity') + change;
-
-        if (quantity === 0)
+        if (change === 0)
           items.delete();
         else
           items.update({ product: { category: product.category, id: product.id, imgUrl: product.imgUrl, price: product.price, title: product.title }, quantity: item.payload.get('quantity') + change });

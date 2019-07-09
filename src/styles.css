@@ -9,3 +9,7 @@
 .d{
     top:57px;
 }
+
+.container{
+    max-width:85%;
+}

@@ -1,0 +1,47 @@
+.quantity {
+  width: 40%;
+  height: 40%;
+}
+
+.material-icons {
+  display: inline-block;
+  /* vertical-align: top; */
+  cursor: pointer;
+  color: #686868;
+  font-size: 0.9rem;
+}
+
+.quantity span {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: #4e4e4e;
+  margin: 1rem;
+}
+
+.btn-icon {
+  background-color: #DCDCDC;
+  padding: 0px;
+  /* border: 1px solid red; */
+  height: 57%;
+  width: 100%;
+}
+
+.price {
+  color: #43b5b4;
+}
+
+.btn-remove {
+  padding-left: 0px;
+  color: #fc6681;
+  font-size: 1rem;
+  /* border: 1px solid #fc6681 */
+}
+
+.btn-remove .material-icons {
+  font-size: 1rem;
+  color: #fc6681;
+}
+
+span {
+  font-size: 0.7rem;
+}

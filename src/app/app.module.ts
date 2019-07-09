@@ -14,6 +14,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FirestoreSettingsToken } from '@angular/fire/firestore';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,6 +80,7 @@ import * as firebase from 'firebase';
     BrowserModule,
     FormsModule,
     CustomFormsModule,
+    MatIconModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

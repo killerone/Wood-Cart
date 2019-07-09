@@ -1,12 +1,112 @@
-.thumbnail {
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    background-size: cover;
+/* .thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-size: cover;
+} */
+
+.card {
+  width: 900px;
 }
-.card{
-    width: 900px;
+
+a {
+  color: black;
 }
-a{
-    color: black;
+
+.cart {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: #9d4e15;
+}
+
+.btn-checkout {
+  font-size: 1.1rem;
+  color: #32CD32;
+  font-weight: bolder;
+  border: 1px solid #32CD32;
+  letter-spacing: 2px;
+}
+
+.btn-checkout:hover {
+  color: white;
+  background-color: #32CD32;
+}
+
+.headers {
+  color: #484848;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+
+.div-img {
+  height: 8rem;
+  width: 7rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  background-size: 7rem 5rem;
+  background-repeat: no-repeat;
+}
+
+.title {
+  font-size: 1rem;
+  color: #282828;
+  font-weight: bolder;
+}
+
+.pipe {
+  color: #fc6681;
+  font-weight: bolder;
+  margin: 0 1rem;
+}
+
+.quantity {
+  width: 40%;
+  height: 40%;
+}
+
+.material-icons {
+  display: inline-block;
+  /* vertical-align: top; */
+  cursor: pointer;
+  color: #686868;
+  font-size: 0.9rem;
+}
+
+.quantity span {
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: #484848;
+  margin: 1rem;
+}
+
+.btn-icon {
+  background-color: #DCDCDC;
+  padding: 0px;
+  /* border: 1px solid red; */
+  height: 57%;
+  width: 30%;
+}
+
+.price {
+  color: #282828;
+}
+
+.btn-remove {
+  padding-left: 0px;
+  color: #fc6681;
+  font-size: 1rem;
+  /* border: 1px solid #fc6681 */
+}
+
+.btn-remove .material-icons {
+  font-size: 1rem;
+  color: #e0000a;
+}
+
+span {
+  font-size: 0.7rem;
 }

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "en",
     "public": "dist/furniture-shopping",
     "ignore": [
       "firebase.json",
