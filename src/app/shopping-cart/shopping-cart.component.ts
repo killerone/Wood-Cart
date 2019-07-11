@@ -18,6 +18,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cart$ = await this.cartService.getCart();
     this.cart$.subscribe(cart =>{
       this.show = cart.items.length? true:false;
+      if(cart.itemsMap.length)
+        this.show = true;
+      else
+        this.show = false;
     })
   }
 

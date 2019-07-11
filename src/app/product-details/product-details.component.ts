@@ -54,4 +54,8 @@ export class ProductDetailsComponent implements OnInit {
     this.tostr.success('1 Product added succefully', 'Product added to cart..', {
     });
   }
+
+  buyNow(){
+    
+  }
 }

@@ -1,31 +1,39 @@
-<form #f="ngForm">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" placeholder="Name" class="form-control"
-      required>
-    <small class="mt-0 mb-1 text-danger" *ngIf="name.touched && name.invalid">
-      <div *ngIf="name.errors.required">Name is required.</div>
-    </small>
-  </div>
-  <div class="form-group">
-    <label for="address">Address</label>
-    <textarea #address="ngModel" rows="5" cols="78" #address="ngModel" name="address" [(ngModel)]="shipping.address"
-      type="text" class="form-control" placeholder="Address" required>
+  <form #f="ngForm">
+    <div class="form-group">
+      <div class="d-flex">
+        <label for="name">Name</label>
+        <small class="text-danger ml-auto" *ngIf="name.touched && name.invalid">
+          <div *ngIf="name.errors.required">Name is required.</div>
+        </small>
+      </div>
+      <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" placeholder="Name" class="form-control"
+        required>
 
+    </div>
+    <div class="form-group">
+      <div class="d-flex">
+        <label for="address">Address</label>
+        <small class="text-danger  ml-auto" *ngIf="address.touched && address.invalid">
+          <div *ngIf="address.errors.required">Address required.</div>
+        </small>
+      </div>
+      <textarea #address="ngModel" rows="5" cols="78" #address="ngModel" name="address" [(ngModel)]="shipping.address"
+        type="text" class="form-control" placeholder="Address" required>
     </textarea>
 
-    <small class="mt-0 mb-1 text-danger" *ngIf="address.touched && address.invalid">
-      <div *ngIf="address.errors.required">Address required.</div>
-    </small>
-  </div>
-  <div class="form-group">
-    <label for="phno">Mobile Number</label>
-    <input #phno="ngModel" name="phno" [(ngModel)]="shipping.phno" type="number" placeholder="Phone Number"
-      pattern=".{10,10}" class="form-control" required>
-    <small class="mt-0 mb-1 text-danger" *ngIf="phno.touched && phno.invalid">
-      <div *ngIf="phno.errors.required">Phone Number is required.</div>
-      <div *ngIf="phno.errors.required">Phone Number lenght should be 10.</div>
-    </small>
-  </div>
-  <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">Place Order</button>
-</form>
+
+    </div>
+    <div class="form-group">
+      <div class="d-flex">
+        <label for="phno">Mobile Number</label>
+        <small class="text-danger  ml-auto" *ngIf="phno.touched && phno.invalid">
+          <div *ngIf="phno.errors.required">Phone Number is required.</div>
+          <div *ngIf="phno.errors.pattern">Phone Number lenght should be 10.</div>
+        </small>
+      </div>
+      <input #phno="ngModel" name="phno" [(ngModel)]="shipping.phno" type="number" placeholder="Phone Number"
+        pattern=".{10,10}" class="form-control" required>
+
+    </div>
+    <button [disabled]="!f.valid" (click)="placeOrder()" class="btn btn-primary">Place Order</button>
+  </form>

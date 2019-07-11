@@ -6,7 +6,9 @@
   <div *ngIf="product.title" class="card" style="width: 17rem;">
     <div class="product-grid3">
       <div class="product-image3">
-        <img class="pic-1" *ngIf="imageUrl;else loading" alt="{{ product.title }}" [src]="imageUrl">
+        <a [routerLink]="['/product-details/',product.id]">
+          <img class="pic-1" *ngIf="imageUrl;else loading" alt="{{ product.title }}" [src]="imageUrl">
+        </a>
       </div>
       <div class="product-content">
         <h3 class="title"><a [routerLink]="['/product-details/',product.id]"><b>{{ product.title }}</b></a></h3>
@@ -19,7 +21,8 @@
               <a (click)="addToCart()" class="fa fa-shopping-cart" style="color:rgb(230, 133, 22)"></a>
             </div>
             <div *ngIf="isAdmin" class="col">
-              <a [routerLink]="['/admin/products/', product.id]" class="fas fa-edit" style="color:rgb(230, 133, 22)"></a>
+              <a [routerLink]="['/admin/products/', product.id]" class="fas fa-edit"
+                style="color:rgb(230, 133, 22)"></a>
             </div>
           </div>
         </div>

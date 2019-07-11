@@ -88,44 +88,6 @@ import * as firebase from 'firebase';
     NgbModule.forRoot(),
     DataTableModule,
     NgxSpinnerModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      { path: 'products/:category', component: ProductsComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'product-details/:id', component: ProductDetailsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'sign-up', component: SignUpComponent },
-
-      { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-      { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
-      { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-
-      {
-        path: 'admin/products/new',
-        component: ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/products/:id',
-        component: ProductFormComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/products',
-        component: AdminProductComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      },
-      {
-        path: 'admin/orders',
-        component: AdminOrdersComponent,
-        canActivate: [AuthGuard, AdminAuthGuard]
-      }, {
-        path: 'orders-details/:id',
-        component: OrderDetailsComponent,
-        canActivate: [AuthGuard]
-      }
-    ]),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 2300,

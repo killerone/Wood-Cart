@@ -3,6 +3,7 @@ import { ShoppingCart } from './../models/shopping-cart';
 import { CartService } from './../service/cart.service';
 import { Component, OnInit, } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'check-out',
@@ -15,6 +16,7 @@ export class CheckOutComponent implements OnInit {
 
 
   constructor(
+    private route: ActivatedRoute,
     private cartService: CartService,
     private title: Title) { }
 
