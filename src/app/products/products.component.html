@@ -1,19 +1,23 @@
 <div class="container-fluid mt-4">
-    <div class="row">
-        <div class="col-2">
-            <div class="float-left">
-                <product-filter [category]="category"></product-filter>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row mx-auto" *ngIf="cart$ | async as cart">
-                <ng-container *ngFor="let p of filteredProducts; let i = index">
-                    <div class="col">
-                        <product-card [product]="p" [shopping-cart]="cart"></product-card>
-                    </div>
-                    <div id="temp" *ngIf="(i + 1) % 4 ===0"></div>
-                </ng-container>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-2">
+      <div class="float-left">
+        <product-filter [category]="category"></product-filter>
+      </div>
     </div>
+    <div class="col">
+      <div class="row mx-auto" *ngIf="cart$ | async as cart">
+        <ng-container *ngFor="let p of filteredProducts; let i = index">
+          <div class="clearfix" ng-if="$index % 3 == 0"></div>
+          <div class="col-sm-4 col-xs-12 mb-4">
+            <product-card [product]="p" [shopping-cart]="cart"></product-card>
+          </div>
+          <!-- <div class="col">
+            <product-card [product]="p" [shopping-cart]="cart"></product-card>
+          </div>
+          <div id="temp" *ngIf="(i + 1) % 4 ===0"></div> -->
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>

@@ -28,8 +28,10 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
     localStorage.clear();
+    this.auth.logout();
+    this.appUser = null;
+    // console.log(this.appUser);
   }
 
   async ngOnInit() {
@@ -61,6 +63,7 @@ export class NavbarComponent implements OnInit {
         }
       });
     }
+ 
   }
 
   search(query: string) {

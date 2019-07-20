@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FirestoreSettingsToken } from '@angular/fire/firestore';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,6 @@ import { AdminProductComponent } from './admin/admin-product/admin-product.compo
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { FormsModule } from '@angular/forms';
 import { ProductService } from './service/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -79,6 +79,7 @@ import * as firebase from 'firebase';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     CustomFormsModule,
     MatIconModule,
     AppRoutingModule,
