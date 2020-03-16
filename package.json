@@ -25,7 +25,6 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "angular-6-datatable": "^0.8.0",
     "angular-font-awesome": "^3.1.2",
-    "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "firebase": "^5.8.0",
     "firebase-tools": "^6.3.0",
