@@ -33,6 +33,7 @@
     "ng2-validation": "^4.2.0",
     "ngx-spinner": "^7.1.4",
     "ngx-toastr": "^9.1.1",
+    "node-sass": "^4.13.1",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
     "tslib": "^1.9.0",
