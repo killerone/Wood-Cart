@@ -1,7 +1,8 @@
 name : Firebase Continues Deployment
 
 on:
-  push: [master]
+  push: 
+    branches: [ master ]
 
 jobs:
   deploy:
